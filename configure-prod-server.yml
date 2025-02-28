@@ -18,5 +18,5 @@
         enabled: true
 
     - name: deploy insurance capstone application using container image
-      command: docker run -itd -p 8081:8080 selvacse0304/capstone-app:1.0
+      command: docker run -itd -p 8081:8081 selvacse0304/capstone-app:1.0
 
