@@ -1,15 +1,22 @@
----
-- hosts: prod-server
+- hosts: insurance-app-prod
   become: true
+
   tasks:
-  - name: update apt
-    command: sudo apt-get update
+    - name: update repos
+      apt:
+        update_cache: yes
 
-  - name: install docker
-    command: sudo apt install -y docker.io
+    - name: install docker
+      apt:
+        pkg: docker.io
+        state: present
 
-  - name: start docker service
-    command: sudo systemctl start docker
+    - name: start docker
+      service:
+        name: docker
+        state: started
+        enabled: true
 
-  - name: deploy insureme application
-    command: sudo docker run -itd -p 8081:8081 shubhamkushwah123/insure-me:1.0
+    - name: deploy insurance capstone application using container image
+      command: docker run -itd -p 8081:8080 selvacse0304/capstone-app:1.0
+
